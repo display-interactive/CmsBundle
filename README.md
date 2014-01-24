@@ -5,32 +5,32 @@ add in AppKernel.php
 --------------------
 
 
-<class AppKernel extends Kernel
-{
-    public function registerBundles()
+    class AppKernel extends Kernel
     {
-        $bundles = array(
-            ...
-            new Display\CmsBundle\DisplayCmsBundle(),
-            new YourOrg\YourWebsiteBundle\YourOrgYourWebsiteBundle(),
-            ...>
+        public function registerBundles()
+        {
+            $bundles = array(
+                ...
+                new Display\CmsBundle\DisplayCmsBundle(),
+                new YourOrg\YourWebsiteBundle\YourOrgYourWebsiteBundle(),
+                ...
 
 extends DisplayCmsBundle
 ------------------------
-<
 
-namespace YourProject\MyBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+    namespace YourProject\MyBundle;
 
-class YourProject\MyBundle extends Bundle
-{
-    public function getParent()
+    use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+    class YourProject\MyBundle extends Bundle
     {
-        return 'DisplayCmsBundle';
+        public function getParent()
+        {
+            return 'DisplayCmsBundle';
+        }
     }
-}
->
+
 
 create your layout
 ------------------
