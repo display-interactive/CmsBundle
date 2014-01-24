@@ -19,7 +19,7 @@ extends DisplayCmsBundle
 ------------------------
 <
 
-<?php
+\<?php
 
 namespace YourProject\MyBundle;
 
