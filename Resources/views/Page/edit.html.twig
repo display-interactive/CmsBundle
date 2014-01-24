@@ -1,0 +1,20 @@
+{% extends 'DisplayCmsBundle::backend_layout.html.twig' %}
+{% form_theme edit_form 'DisplayCmsBundle::form_theme.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'DisplayCmsBundle:Page:script.html.twig' %}
+{% endblock %}
+
+{% block display_cms_admin_content %}
+
+    <a href="{{ path('display_cms_backend_page') }}">
+        Back to the list
+    </a>
+    <div class="page-header">
+        <h1>Page edit</h1>
+    </div>
+
+    {{ form(edit_form) }}
+    {{ form(delete_form) }}
+{% endblock %}

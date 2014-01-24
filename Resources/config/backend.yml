@@ -1,0 +1,133 @@
+#page
+display_cms_backend_page:
+    path: /page
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:index }
+
+display_cms_backend_page_show:
+    path: /page/{id}/show
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:show }
+
+display_cms_backend_page_new:
+    path: /page/new
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:new }
+
+display_cms_backend_page_create:
+    path: /page/create
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:create }
+
+display_cms_backend_page_edit:
+    path: /page/{id}/edit
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:edit }
+
+display_cms_backend_page_update:
+    path: /page/{id}/update
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:update }
+
+display_cms_backend_page_delete:
+    path: /page/{id}/delete
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:delete }
+
+display_cms_backend_page_cache:
+    path: /page/{id}/cache
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:cache }
+
+display_cms_backend_page_cache_all:
+    path: /page/cache-all
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:cacheAll }
+
+display_cms_backend_page_remove_all:
+    path: /page/remove-all
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Page:removeAll }
+
+#fragment
+display_cms_backend_fragment:
+    path: /fragment
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Fragment:index }
+
+display_cms_backend_fragment_create:
+    path: /fragment/create
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Fragment:create }
+
+display_cms_backend_fragment_new:
+    path: /fragment/new
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Fragment:new }
+
+display_cms_backend_fragment_edit:
+    path: /fragment/{id}/edit
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Fragment:edit }
+
+display_cms_backend_fragment_update:
+    path: /fragment/{id}/update
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Fragment:update }
+
+display_cms_backend_fragment_delete:
+    path: /fragment/{id}/delete
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Fragment:delete }
+
+#media
+display_cms_backend_media:
+    path: /media
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Media:index }
+
+display_cms_backend_media_upload:
+    path: /media/upload
+    defaults:  { _controller: DisplayCmsBundle:Backend/Media:upload }
+
+display_cms_backend_media_edit:
+    path: /media/{id}
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Media:edit }
+
+display_cms_backend_media_update:
+    path: /media/{id}/update
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Media:update }
+
+display_cms_backend_media_delete:
+    path: /media/{id}/delete
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Media:delete }
+
+#menu
+display_cms_backend_menu:
+    path: /menu
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Menu:index }
+
+display_cms_backend_menu_new:
+    path: /menu/new/{locale}
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Menu:new, locale: null }
+
+display_cms_backend_menu_create:
+    path: /menu/create
+    methods: [POST]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Menu:create }
+
+display_cms_backend_menu_edit:
+    path: /menu/edit/{locale}
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/Menu:edit, locale: null }
+
+#file explorer
+display_cms_file_explorer:
+    path: /file-explorer
+    methods: [GET]
+    defaults:  { _controller: DisplayCmsBundle:Backend/FileExplorer:index }

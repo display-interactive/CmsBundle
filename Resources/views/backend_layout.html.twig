@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Display CMS {% if title is defined %} ~ {{ title|trans }} {% endif %}</title>
+    <meta name="viewport" content="initial-scale=1.0">
+
+    <!-- Le styles -->
+    {% block stylesheets %}
+        {% if app.environment == 'dev' %}
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('bundles/displaycms/css/base_markitup.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/displaycms/css/markitup.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/displaycms/css/file-explorer.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/displaycms/css/app.css') }}">
+        {% else %}
+            {% stylesheets
+                '@DisplayCmsBundle/Resources/public/css/libs/bootstrap.min.css'
+                '@DisplayCmsBundle/Resources/public/css/base_markitup.css'
+                '@DisplayCmsBundle/Resources/public/css/markitup.css'
+                '@DisplayCmsBundle/Resources/public/css/file-explorer.css'
+                '@DisplayCmsBundle/Resources/public/css/app.css'
+                    output='bundles/displaycms/css/cms.css'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endif %}
+    {% endblock %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{% block display_cms_admin_nav %}
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('display_cms_backend_page') }}">Display CMS</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('display_cms_backend_page') }}">Page</a></li>
+                <li><a href="{{ path('display_cms_backend_fragment') }}">Fragment</a></li>
+                <li><a href="{{ path('display_cms_backend_media') }}">Media</a></li>
+                <li><a href="{{ path('display_cms_backend_menu') }}">Menu</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+{% endblock display_cms_admin_nav %}
+
+<div class="container">
+    {% block title %}{% endblock %}
+    {% if app.session.flashbag.has('alert') %}
+        {% autoescape false %}
+        {% for key, alert in app.session.flashbag.get('alert') %}
+            {% if alert.type is defined  %}
+                <div class="alert {{ alert.type }} alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {% if alert.title is defined %}
+                        <h4>{{ alert.title|trans|raw }}</h4>
+                    {% endif %}
+                    {{ alert.message|trans|raw }}
+                </div>
+            {% else %}
+                <div class="alert {{ key }} alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ alert|trans|raw }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% endautoescape %}
+    {% endif %}
+
+    {% block display_cms_admin_content %}
+    {% endblock display_cms_admin_content %}
+</div>
+
+<!-- Le javascript -->
+{% block javascripts %}
+    <script type="text/javascript">
+        window.appCms = {
+            explorer: '{{ path('display_cms_file_explorer') }}',
+            workingUrl: '{{ asset('uploads/medias/') }}'
+        };
+    </script>
+    {% if app.environment == 'dev' %}
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <script src="{{ asset('bundles/displaycms/js/FileExplorer.js') }}"></script>
+        <script src="{{ asset('bundles/displaycms/js/FilePreview.js') }}"></script>
+        <script src="{{ asset('bundles/displaycms/js/ImagePreview.js') }}"></script>
+        <script src="{{ asset('bundles/displaycms/js/confirm.js') }}"></script>
+        <script src="{{ asset('bundles/displaycms/js/main.js') }}"></script>
+    {% else %}
+        {% javascripts
+            '@DisplayCmsBundle/Resources/public/js/libs/jquery-1.10.2.min.js'
+            '@DisplayCmsBundle/Resources/public/js/libs/bootstrap.min.js'
+            '@DisplayCmsBundle/Resources/public/js/FileExplorer.js'
+            '@DisplayCmsBundle/Resources/public/js/FilePreview.js'
+            '@DisplayCmsBundle/Resources/public/js/ImagePreview.js'
+            '@DisplayCmsBundle/Resources/public/js/confirm.js'
+            '@DisplayCmsBundle/Resources/public/js/main.js'
+                output='bundles/displaycms/js/cms.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}
+</body>
+</html>

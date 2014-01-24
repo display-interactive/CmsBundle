@@ -1,0 +1,79 @@
+{% extends 'DisplayCmsBundle::backend_layout.html.twig' %}
+{% form_theme form 'DisplayCmsBundle::form_theme.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/displaycms/js/libs/jquery.nestable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/displaycms/js/nested.js') }}"></script>
+{% endblock %}
+
+{% macro list(node) %}
+    {% spaceless %}
+        <li class="dd-item" data-id="{{ node.page.id }}">
+            <div class="dd-handle">{{ node.page.id }} . {{ node.page.title }}</div>
+            {% if node.children|length > 0 %}
+                <ol class="dd-list">
+                    {% for child in node.children %}
+                        {{ _self.list(child) }}
+                    {% endfor %}
+                </ol>
+            {% endif %}
+        </li>
+    {% endspaceless %}
+{% endmacro %}
+
+
+{% block display_cms_admin_content %}
+    <a href="{{ path('display_cms_backend_menu') }}">
+        Back to the list
+    </a>
+    <div class="page-header">
+        <h1>Menu creation</h1>
+    </div>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.locale) }}
+        {{ form_row(form.menus) }}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Menu</div>
+                <div class="panel-body">
+                    <div class="dd" id="menus">
+                        <ol class="dd-list">
+                            <li class="dd-item dd-hidden" data-id="0">
+                                <div class="dd-handle">&nbsp;</div>
+                            </li>
+                            {% for menu in menus %}
+                                {% if menu.parent is null %}
+                                    {{ _self.list(menu) }}
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Pages</div>
+                <div class="panel-body">
+                    <div class="dd" id="pages">
+                        <ol class="dd-list">
+                        {% for page in pages %}
+                            <li class="dd-item" data-id="{{ page.id }}">
+                                <div class="dd-handle">{{ page.id }}. {{ page.title }}</div>
+                            </li>
+                        {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

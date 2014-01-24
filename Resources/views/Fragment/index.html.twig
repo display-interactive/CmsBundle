@@ -1,0 +1,42 @@
+{% extends 'DisplayCmsBundle::backend_layout.html.twig' %}
+
+{% block display_cms_admin_content %}
+    <div class="page-header">
+        <h1>
+            <a href="{{ path('display_cms_backend_fragment_new') }}" class="btn btn-primary pull-right ml5">
+                Create a new entry
+            </a>
+
+            Fragment list
+        </h1>
+    </div>
+
+    {% if entities|length > 0 %}
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.name }}</td>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <a href="{{ path('display_cms_backend_fragment_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-success ml5">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-info">no fragment</div>
+    {% endif %}
+{% endblock %}

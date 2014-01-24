@@ -1,0 +1,16 @@
+<div id="file-explorer-preview" class="file-explorer-preview">
+    <div class="file-explorer-preview-empty">Aucun apercu</div>
+    <img src="" alt="" />
+    <video src="" width="310" heigth="174" controls autobuffer autoplay preload="auto">:(</video>
+    <audio src="" controls autobuffer autoplay preload="auto">:(</audio>
+    <div id="metadata" class="mt15"></div>
+</div>
+
+<ul class="dropdown-menu file-explorer">
+    {% for directory in list.directories %}
+        <li><a href="{{ directory.path ? directory.path : '#' }}" class="{{ directory.path ? 'explore-directory' : 'invalid'}}"><i class="icon-folder-open"></i> {{ directory.name }}</a></li>
+    {% endfor %}
+    {% for file in list.files %}
+        <li><a href="{{ file.path ? file.path : '#' }}" data-return="{{ file.return }}" class="{{ file.path ? 'select-file' : 'invalid'}}"><i class="icon-file"></i> {{ file.name }}</a></li>
+    {% endfor %}
+</ul>

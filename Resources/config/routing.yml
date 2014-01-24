@@ -1,0 +1,19 @@
+display_cms_backend_root:
+    pattern: /backend{slash}
+    requirements: {slash: "[/]?"}
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /backend/page
+        permanent: true
+
+display_cms_backend:
+    resource: "@DisplayCmsBundle/Resources/config/backend.yml"
+    prefix:   /backend
+
+display_cms_frontend:
+    path: /{slug}
+    defaults:  { _controller: DisplayCmsBundle:Frontend/Page:page }
+    requirements:
+        slug: ".*"
+
+

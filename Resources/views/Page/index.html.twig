@@ -1,0 +1,53 @@
+{% extends 'DisplayCmsBundle::backend_layout.html.twig' %}
+
+{% block display_cms_admin_content %}
+    <div class="page-header">
+        <h1>
+            <a href="{{ path('display_cms_backend_page_new') }}" class="btn btn-primary pull-right ml5">
+                Create a new entry
+            </a>
+
+            <a href="{{ path('display_cms_backend_page_cache_all') }}" class="btn btn-default pull-right">
+                Generate cache
+            </a>
+
+            Page list
+        </h1>
+    </div>
+
+    {% if entities|length > 0 %}
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Parent</th>
+                <th>Status</th>
+                <th>Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.title }} <span class="badge badge-default">{{ entity.locale }}</span></td>
+                <td>{{ entity.slug }}</td>
+                <td>{% if entity.parent %}<a href="{{ path('display_cms_backend_page_edit', { 'id': entity.parent.id }) }}">{{ entity.parent.id }}</a>{% endif %}</td>
+                <td>{{ entity.status }}</td>
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <a href="{{ path('display_cms_backend_page_show', {'id': entity.id}) }}" target="_blank" class="btn btn-xs btn-info">show</a>
+                    <a href="{{ path('display_cms_backend_page_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-success ml5">edit</a>
+                    <a href="{{ path('display_cms_backend_page_cache', { 'id': entity.id }) }}" class="btn btn-xs btn-default ml5">cache</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <div class="alert alert-info">no page</div>
+    {% endif %}
+{% endblock %}

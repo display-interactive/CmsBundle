@@ -1,0 +1,12 @@
+{% spaceless %}
+<ul>
+{% for menu in menus %}
+    <li>
+        <a href="{{ cms_path(menu.page.id) }}">{{ menu.page.title }}</a>
+        {% if menu.nbChildren > 0 %}
+        {% include "DisplayCmsBundle:Cms:nav.html.twig" with {'menus': menu.children} %}
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endspaceless %}

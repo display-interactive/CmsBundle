@@ -1,0 +1,15 @@
+{% extends 'DisplayCmsBundle::backend_layout.html.twig' %}
+{% form_theme form 'DisplayCmsBundle::form_theme.html.twig' %}
+
+{% block display_cms_admin_content %}
+    <a href="{{ path('display_cms_backend_media') }}">
+        Back to the list
+    </a>
+
+    <div class="page-header">
+        <h1>Upload</h1>
+    </div>
+
+    {{ form(form) }}
+
+{% endblock %}

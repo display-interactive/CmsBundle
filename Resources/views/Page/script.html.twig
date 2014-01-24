@@ -1,0 +1,14 @@
+{% if app.environment == 'dev' %}
+    <script type="text/javascript" src="{{ asset('bundles/displaycms/js/libs/markitup/jquery.markitup.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/displaycms/js/set.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/displaycms/js/markitup.js') }}"></script>
+{% else %}
+    {% javascripts
+        '@DisplayCmsBundle/Resources/public/js/libs/markitup/jquery.markitup.js'
+        '@DisplayCmsBundle/Resources/public/js/set.js'
+        '@DisplayCmsBundle/Resources/public/js/markitup.js'
+            output='bundles/displaycms/js/mkp.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endif %}

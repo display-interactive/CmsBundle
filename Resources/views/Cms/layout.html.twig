@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block display_cms_header_title %}{% endblock %}</title>
+    <meta name="description" content="{% block display_cms_description %}{% endblock %}" />
+</head>
+<body>
+{% block display_cms_breadcrumb %}{% endblock %}
+
+<h1>{% block display_cms_title %}{% endblock %}</h1>
+
+{% block display_cms_content %}{% endblock %}
+</body>
+</html>
