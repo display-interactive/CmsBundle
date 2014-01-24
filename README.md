@@ -19,8 +19,6 @@ extends DisplayCmsBundle
 ------------------------
 <
 
-\<?php
-
 namespace YourProject\MyBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
