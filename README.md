@@ -45,11 +45,11 @@ need a "maxage" integer for <Response> in parameters.yml
 
 add in routing.yml
 ------------------
-"
-display_cms:
-    resource: "@DisplayCmsBundle/Resources/config/routing.yml"
-    prefix:   /
-"
+
+    display_cms:
+        resource: "@DisplayCmsBundle/Resources/config/routing.yml"
+        prefix:   /
+
 
 
 Make your own skin !
